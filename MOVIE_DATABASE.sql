@@ -23,10 +23,77 @@ CREATE TABLE MOVIE (
 
     PRIMARY KEY (MovieID),
 
-    FOREIGN KEY (ProducerID)
-        REFERENCES PRODUCER(ProducerID),
+    FOREIGN KEY (ProducerID) 
+	REFERENCES PRODUCER(ProducerID),
 
     CHECK (Duration > 0),
     CHECK (ReleaseYear IS NULL OR ReleaseYear > 0)
 );
+
+
+CREATE TABLE ACTOR (
+    ActorID INT AUTO_INCREMENT,
+    FullName VARCHAR(100) NOT NULL,
+    DateOfBirth DATE,
+    Nationality VARCHAR(50),
+
+    PRIMARY KEY (ActorID)
+);
+
+
+
+CREATE TABLE DIRECTOR (
+    DirectorID INT AUTO_INCREMENT,
+    FullName VARCHAR(100) NOT NULL,
+    DateOfBirth DATE,
+    Nationality VARCHAR(50),
+
+    PRIMARY KEY (DirectorID)
+);
+
+
+
+CREATE TABLE MOVIE_ACTOR (
+    MovieID INT NOT NULL,
+    ActorID INT NOT NULL,
+    CharacterName VARCHAR(100) NOT NULL,
+
+    PRIMARY KEY (MovieID, ActorID),
+
+    FOREIGN KEY (MovieID)
+        REFERENCES MOVIE(MovieID),
+
+    FOREIGN KEY (ActorID)
+        REFERENCES ACTOR(ActorID)
+);
+
+
+
+CREATE TABLE MOVIE_DIRECTOR (
+    MovieID INT NOT NULL,
+    DirectorID INT NOT NULL,
+
+    PRIMARY KEY (MovieID, DirectorID),
+
+    FOREIGN KEY (MovieID)
+        REFERENCES MOVIE(MovieID),
+
+    FOREIGN KEY (DirectorID)
+        REFERENCES DIRECTOR(DirectorID)
+);
+
+
+
+CREATE TABLE MOVIE_QUOTE (
+    QuoteID INT AUTO_INCREMENT,
+    MovieID INT NOT NULL,
+    ActorID INT NOT NULL,
+    QuoteText TEXT NOT NULL,
+
+    PRIMARY KEY (QuoteID),
+
+    FOREIGN KEY (MovieID, ActorID)
+        REFERENCES MOVIE_ACTOR(MovieID, ActorID)
+);
+
 
