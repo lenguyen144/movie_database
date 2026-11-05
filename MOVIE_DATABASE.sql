@@ -153,3 +153,17 @@ CREATE TABLE MOVIE_QUOTE (
         ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- ==========================================
+-- 8. INDEXES
+-- Improve search performance
+-- ==========================================
+
+CREATE INDEX idx_movie_title
+    ON MOVIE(Title);
+
+CREATE INDEX idx_movie_genre
+    ON MOVIE(Genre);
+
+CREATE INDEX idx_actor_fullname
+    ON ACTOR(FullName);
+
