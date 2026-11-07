@@ -25,7 +25,20 @@ CREATE TABLE PRODUCER (
 
 
 -- ==========================================
--- 2. TABLE: MOVIE
+-- 2. TABLE: GENRE
+-- Store movie genre information
+-- ==========================================
+
+CREATE TABLE GENRE (
+    GenreID INT AUTO_INCREMENT,
+    GenreName VARCHAR(50) NOT NULL UNIQUE,
+
+    PRIMARY KEY (GenreID)
+) ENGINE=InnoDB;
+
+
+-- ==========================================
+-- 3. TABLE: MOVIE
 -- Store movie information
 -- ==========================================
 
@@ -33,7 +46,6 @@ CREATE TABLE MOVIE (
     MovieID INT AUTO_INCREMENT,
     Title VARCHAR(150) NOT NULL,
     Duration INT NOT NULL,
-    Genre VARCHAR(50) NOT NULL,
     Plot TEXT,
     ReleaseYear INT,
     ProducerID INT NOT NULL,
@@ -52,7 +64,7 @@ CREATE TABLE MOVIE (
 
 
 -- ==========================================
--- 3. TABLE: ACTOR
+-- 4. TABLE: ACTOR
 -- Store actor information
 -- ==========================================
 
@@ -67,7 +79,7 @@ CREATE TABLE ACTOR (
 
 
 -- ==========================================
--- 4. TABLE: DIRECTOR
+-- 5. TABLE: DIRECTOR
 -- Store director information
 -- ==========================================
 
@@ -82,7 +94,7 @@ CREATE TABLE DIRECTOR (
 
 
 -- ==========================================
--- 5. TABLE: MOVIE_ACTOR
+-- 6. TABLE: MOVIE_ACTOR
 -- Connect movies and actors
 -- Store character names
 -- ==========================================
@@ -109,7 +121,7 @@ CREATE TABLE MOVIE_ACTOR (
 
 
 -- ==========================================
--- 6. TABLE: MOVIE_DIRECTOR
+-- 7. TABLE: MOVIE_DIRECTOR
 -- Connect movies and directors
 -- ==========================================
 
@@ -134,7 +146,32 @@ CREATE TABLE MOVIE_DIRECTOR (
 
 
 -- ==========================================
--- 7. TABLE: MOVIE_QUOTE
+-- 8. TABLE: MOVIE_GENRE
+-- Connect movies and genres
+-- ==========================================
+
+CREATE TABLE MOVIE_GENRE (
+    MovieID INT NOT NULL,
+    GenreID INT NOT NULL,
+
+    PRIMARY KEY (MovieID, GenreID),
+
+    CONSTRAINT fk_movie_genre_movie
+        FOREIGN KEY (MovieID)
+        REFERENCES MOVIE(MovieID)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_movie_genre_genre
+        FOREIGN KEY (GenreID)
+        REFERENCES GENRE(GenreID)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+
+-- ==========================================
+-- 9. TABLE: MOVIE_QUOTE
 -- Store famous movie quotes
 -- ==========================================
 
@@ -154,15 +191,12 @@ CREATE TABLE MOVIE_QUOTE (
 ) ENGINE=InnoDB;
 
 -- ==========================================
--- 8. INDEXES
+-- 10. INDEXES
 -- Improve search performance
 -- ==========================================
 
 CREATE INDEX idx_movie_title
     ON MOVIE(Title);
-
-CREATE INDEX idx_movie_genre
-    ON MOVIE(Genre);
 
 CREATE INDEX idx_actor_fullname
     ON ACTOR(FullName);
