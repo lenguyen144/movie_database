@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIE DATABASE API TESTER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>MOVIE DATABASE API TESTER</h1>
+        <p>Flask API Testing Interface</p>
+    </header>
+
+    <main>
+
+        <!-- REQUEST PANEL -->
+        <section id="request-panel">
+
+            <h2>Request</h2>
+
+            <!-- Chọn đối tượng -->
+            <div>
+                <label for="object-select">Select Object:</label>
+
+                <select id="object-select">
+                    <option value="">-- Select Object --</option>
+                    <option value="actor">Actor</option>
+                    <option value="director">Director</option>
+                    <option value="producer">Producer</option>
+                    <option value="movie">Movie</option>
+                    <option value="genre">Genre</option>
+                    <option value="quote">Quote</option>
+                </select>
+            </div>
+
+            <!-- Chọn HTTP Method -->
+            <div>
+                <label for="method-select">HTTP Method:</label>
+
+                <select id="method-select">
+                    <option value="">-- Select Method --</option>
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="DELETE">DELETE</option>
+                </select>
+            </div>
+
+            <!-- Khu vực lựa chọn GET -->
+            <div id="get-options" hidden>
+                <label for="get-type">GET Type:</label>
+
+                <select id="get-type">
+                    <option value="">-- Select GET Type --</option>
+                    <option value="all">Get All</option>
+                    <option value="by-id">Get By ID</option>
+                </select>
+            </div>
+
+            <!-- Khu vực nhập ID -->
+            <div id="id-input-area" hidden>
+                <label for="record-id">Record ID:</label>
+                <input type="number" id="record-id" min="1">
+            </div>
+
+            <!-- Khu vực nhập dữ liệu -->
+            <div id="form-area" hidden>
+                <h3>Request Data</h3>
+
+                <div id="dynamic-form">
+                    <!-- JavaScript sẽ tạo các trường nhập liệu tại đây -->
+                </div>
+            </div>
+
+            <!-- Nút gửi Request -->
+            <div>
+                <button id="send-button" type="button">
+                    Send Request
+                </button>
+
+                <button id="clear-button" type="button">
+                    Clear Form
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- RESPONSE PANEL -->
+        <section id="response-panel">
+
+            <h2>Response</h2>
+
+            <!-- HTTP Status Code -->
+            <div>
+                <h3>Status Code</h3>
+                <span id="status-code">No response</span>
+            </div>
+
+            <!-- Thông báo -->
+            <div>
+                <h3>Message</h3>
+                <p id="response-message">Waiting for request...</p>
+            </div>
+
+            <!-- JSON Response -->
+            <div>
+                <h3>JSON Response</h3>
+
+                <pre id="json-response">No data</pre>
+            </div>
+
+            <!-- Nút xóa kết quả -->
+            <button id="clear-response-button" type="button">
+                Clear Response
+            </button>
+
+        </section>
+
+    </main>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

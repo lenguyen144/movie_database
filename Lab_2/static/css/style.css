@@ -1,0 +1,197 @@
+
+/* ==============================
+   GENERAL
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #263238;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+    color: #183153;
+    font-size: 30px;
+}
+
+header p {
+    color: #64748b;
+    margin-top: 0;
+}
+
+
+/* ==============================
+   MAIN LAYOUT
+============================== */
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+/* ==============================
+   PANELS
+============================== */
+
+#request-panel,
+#response-panel {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    min-width: 0;
+}
+
+section h2 {
+    margin-top: 0;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #183153;
+}
+
+
+/* ==============================
+   FORM ELEMENTS
+============================== */
+
+#request-panel > div {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+}
+
+select:focus,
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+#send-button {
+    background-color: #2563eb;
+    color: white;
+}
+
+#send-button:hover {
+    background-color: #1d4ed8;
+}
+
+#clear-button,
+#clear-response-button {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+#clear-button:hover,
+#clear-response-button:hover {
+    background-color: #cbd5e1;
+}
+
+
+/* ==============================
+   RESPONSE
+============================== */
+
+#response-panel h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#status-code {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 6px;
+    background-color: #e2e8f0;
+    font-weight: bold;
+}
+
+#response-message {
+    color: #475569;
+}
+
+#json-response {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 180px;
+    max-height: 450px;
+    overflow: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   DYNAMIC FORM
+============================== */
+
+#dynamic-form > div {
+    margin-bottom: 16px;
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 23px;
+    }
+}
